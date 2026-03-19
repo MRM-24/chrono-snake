@@ -6,7 +6,7 @@ A retro-inspired snake game with a dark neon-green aesthetic, built as a **singl
 
 ## 🌐 Live Demo
 
-[▶ Play Chrono Snake](https://your-project.vercel.app)
+[▶ Play Chrono Snake](https://chrono-snake.vercel.app/)
 
 ---
 
