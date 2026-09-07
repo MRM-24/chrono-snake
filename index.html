@@ -846,7 +846,14 @@ function curInterval(){
 }
 function tick(){
   if(paused||state!=='playing')return;
-  if(lut>0){lut--;if(lut<=0)hideAll();return;}
+  if(lut>0){
+    /* Level-up pause: consume wall-clock time and PARK the snake so the
+       interpolated render holds still instead of jittering back & forth. */
+    lut-=curInterval();
+    prevSn=cpySnake(sn);
+    if(lut<=0){lut=0;hideAll();}
+    return;
+  }
   var c=lc(lv);
   ticks++;
   var dt=curInterval();
@@ -984,7 +991,7 @@ function levelUp(){
   $('lvlNum').textContent=lv;
   $('lvlBonus').textContent=hp===3?'❤️❤️❤️ FULL HEALTH!':'+1 ❤️ RESTORED';
   showOv('lvlUpOv');
-  lut=22;
+  lut=2000; /* wall-clock ms of level-up pause (consistent at every level) */
   sfx('lvlup');vib([30,30,60]);
   burst(sn[0].x,sn[0].y,C.gem,24,2.6);
 }
@@ -1428,7 +1435,7 @@ function frame(ts){
     var it=0;
     while(acc>=curInterval()&&it<6){
       acc-=curInterval();it++;
-      if(hitstop>0){hitstop--;continue;}
+      if(hitstop>0){hitstop--;prevSn=cpySnake(sn);continue;} /* freeze on bomb hit: park, don't jitter */
       tick();
       if(state!=='playing')break;
     }
@@ -1493,13 +1500,15 @@ addSwipe(pCv);
 /* ── Pause ── */
 function doPause(){
   paused=true;menuPaused=false;
+  prevSn=cpySnake(sn); /* park: resume must not re-slide the last move */
   $('pPauseBtn').textContent='▶';$('fsPauseBtn').textContent='▶';
   showOv('pauseOv');needsRender=true;
 }
 function doResume(){
   paused=false;menuPaused=false;lastTs=0;acc=0;
   $('pPauseBtn').textContent='⏸';$('fsPauseBtn').textContent='⏸';
-  hideAll();needsRender=true;
+  if(lut>0)showOv('lvlUpOv');else hideAll(); /* keep the level-up pause visible */
+  needsRender=true;
 }
 function togglePause(){
   if(state!=='playing')return;
@@ -1529,6 +1538,7 @@ function openMenu(){
   $('mClose').style.display=(state==='playing'||state==='gameover')?'flex':'none';
   if(state==='playing'&&!paused){
     menuPaused=true;paused=true;
+    prevSn=cpySnake(sn); /* park: closing the menu must not re-slide the last move */
     $('pPauseBtn').textContent='▶';$('fsPauseBtn').textContent='▶';
     $('pauseOv').classList.add('hidden');
     needsRender=true;
@@ -1543,7 +1553,8 @@ function closeMenu(){
     menuPaused=false;
     paused=false;lastTs=0;acc=0;
     $('pPauseBtn').textContent='⏸';$('fsPauseBtn').textContent='⏸';
-    hideAll();needsRender=true;
+    if(lut>0)showOv('lvlUpOv');else hideAll(); /* keep the level-up pause visible */
+    needsRender=true;
   }
   /* If the player had paused themselves before opening the menu, stay paused. */
 }
@@ -1594,7 +1605,7 @@ function continueEndless(){
   syncHUD();syncProg();
   $('lvlNum').textContent=lv;
   $('lvlBonus').textContent=lv>9?'⏩ ENDLESS — IT GETS FASTER…':'+1 ❤️ RESTORED';
-  showOv('lvlUpOv');lut=22;
+  showOv('lvlUpOv');lut=2000;
   state='playing';paused=false;lastTs=0;acc=0;
   sfx('lvlup');needsRender=true;
 }
