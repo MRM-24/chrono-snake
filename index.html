@@ -35,7 +35,7 @@ html,body{
    PHONE DEVICE
 ══════════════════════════════ */
 #phoneWrap{
-  width:min(320px,88vw);
+  width:min(460px,92vw);
   background:linear-gradient(160deg,#2a2e2a 0%,#181c18 40%,#111411 70%,#1e221e 100%);
   border-radius:clamp(16px,5vw,26px) clamp(16px,5vw,26px) clamp(22px,6vw,36px) clamp(22px,6vw,36px);
   padding:clamp(10px,3vw,13px) clamp(10px,3vw,13px) clamp(16px,5vw,22px);
@@ -67,9 +67,9 @@ html,body{
 }
 .hud{
   background:rgba(5,14,5,.95);
-  display:flex;justify-content:space-between;align-items:center;gap:5px;
-  padding:5px 8px 4px;
-  font-size:clamp(6px,1.8vw,9px);letter-spacing:1px;
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:6px 10px 5px;
+  font-size:clamp(7px,2vw,10px);letter-spacing:1px;
   color:var(--acc);border-bottom:1px solid var(--border);
   font-family:'Share Tech Mono',monospace;
 }
@@ -101,16 +101,16 @@ html,body{
 /* Bottom controls */
 .bottom{
   width:100%;
-  padding:clamp(8px,2.5vw,12px) 0 clamp(2px,1vw,4px);
+  padding:clamp(10px,3vw,16px) 0 clamp(3px,1.5vw,6px);
   display:flex;flex-direction:column;align-items:center;
-  gap:clamp(6px,2vw,9px);
+  gap:clamp(8px,2.5vw,12px);
 }
 .prog-wrap{width:calc(100% - 20px);height:3px;background:#0d1a0d;border-radius:2px;overflow:hidden;}
 .prog-bar{height:100%;background:linear-gradient(90deg,#1a4aff,var(--acc));border-radius:2px;transition:width .3s;width:0%;box-shadow:0 0 4px var(--acc);}
 
 /* Joystick */
 #joyPanel{display:flex;align-items:center;justify-content:center;width:100%;}
-.joy-wrap{position:relative;width:min(132px,38vw);height:min(132px,38vw);display:flex;align-items:center;justify-content:center;}
+.joy-wrap{position:relative;width:min(160px,42vw);height:min(160px,42vw);display:flex;align-items:center;justify-content:center;}
 .joy-outer{position:absolute;inset:-3px;border-radius:50%;background:radial-gradient(circle,#1a2a1a,#080e08);box-shadow:0 0 0 1px #2a3a2a,0 4px 10px rgba(0,0,0,.9),0 0 12px rgba(57,255,106,.06);}
 .joy-base{
   position:relative;width:100%;height:100%;border-radius:50%;
@@ -137,7 +137,7 @@ html,body{
 
 /* D-pad */
 #dpadPanel{display:none;align-items:center;justify-content:center;width:100%;}
-.dpad-grid{display:grid;grid-template-columns:repeat(3,clamp(40px,11.5vw,48px));grid-template-rows:repeat(3,clamp(40px,11.5vw,48px));gap:3px;}
+.dpad-grid{display:grid;grid-template-columns:repeat(3,clamp(46px,12.5vw,56px));grid-template-rows:repeat(3,clamp(46px,12.5vw,56px));gap:4px;}
 .dp-btn{
   background:linear-gradient(160deg,#1e281e,#111611);
   border:1px solid var(--border);border-radius:7px;
@@ -153,7 +153,7 @@ html,body{
 /* Pause + brand row */
 .ctrl-row{display:flex;align-items:center;justify-content:center;width:100%;gap:14px;}
 .pause-btn{
-  width:clamp(44px,12.5vw,52px);height:clamp(44px,12.5vw,52px);border-radius:50%;border:none;
+  width:clamp(50px,13vw,60px);height:clamp(50px,13vw,60px);border-radius:50%;border:none;
   background:radial-gradient(circle at 35% 30%,#1e5e1e,#0d3a0d 60%,#061506);
   color:var(--acc);font-size:clamp(14px,4vw,17px);
   box-shadow:0 4px 0 #030a03,0 0 12px rgba(57,255,106,.2),inset 0 1px 2px rgba(57,255,106,.1);
@@ -162,10 +162,10 @@ html,body{
   display:flex;align-items:center;justify-content:center;
 }
 .pause-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #030a03;}
-.brand-label{font-family:'Orbitron',sans-serif;font-size:clamp(5px,1.4vw,6px);color:#1e2e1e;letter-spacing:2px;}
+.brand-label{font-family:'Orbitron',sans-serif;font-size:clamp(6px,1.6vw,8px);color:#2a4a2a;letter-spacing:3px;}
 
 .ind-dots{display:flex;gap:5px;}
-.ind-dot{width:4px;height:4px;border-radius:50%;background:#111711;}
+.ind-dot{width:6px;height:6px;border-radius:50%;background:#181a18;box-shadow:inset 0 0 2px #050e05;}
 .ind-dot.on{background:var(--acc);box-shadow:0 0 5px var(--acc);}
 
 /* Hamburger — top right */
@@ -195,7 +195,7 @@ html,body{
 
 .ov-h1{
   font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(16px,4.5vw,24px);color:var(--acc);line-height:1.3;
+  font-size:clamp(20px,5.5vw,32px);color:var(--acc);line-height:1.2;
   letter-spacing:4px;text-shadow:0 0 20px rgba(57,255,106,.5);
 }
 .ov-sub{font-size:clamp(5px,1.5vw,7px);color:#4a6a4a;line-height:2.3;letter-spacing:1px;}
@@ -222,7 +222,7 @@ html,body{
 /* Overlay buttons */
 .ov-btns{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;justify-content:center;}
 .ov-btn{
-  font-family:'Orbitron',sans-serif;font-size:clamp(7px,1.9vw,9px);font-weight:700;letter-spacing:2px;
+  font-family:'Orbitron',sans-serif;font-size:clamp(8px,2.2vw,11px);font-weight:700;letter-spacing:2px;
   color:var(--dark);background:var(--acc);border:none;border-radius:6px;padding:10px 16px;
   cursor:pointer;box-shadow:0 3px 0 #0a3a0a,0 0 12px rgba(57,255,106,.35);
   -webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .08s,box-shadow .08s;
@@ -255,7 +255,7 @@ html,body{
 .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
 .menu-item{
   background:#0d150d;border:1px solid #1a2a1a;border-radius:10px;
-  padding:13px 10px;display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:15px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;
   cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
   transition:border-color .12s,background .12s,transform .08s;
 }
@@ -398,7 +398,7 @@ html,body{
       <span>HI:<span id="pHi">0</span></span>
     </div>
     <div class="p-screen" id="pScreen">
-      <canvas id="pCanvas" width="220" height="220"></canvas>
+      <canvas id="pCanvas" width="340" height="340"></canvas>
     </div>
   </div>
   <div class="bottom">
@@ -846,7 +846,7 @@ function curInterval(){
 }
 function tick(){
   if(paused||state!=='playing')return;
-  if(lut>0){lut--;return;}
+  if(lut>0){lut--;if(lut<=0)hideAll();return;}
   var c=lc(lv);
   ticks++;
   var dt=curInterval();
